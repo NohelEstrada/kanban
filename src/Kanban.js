@@ -23,7 +23,7 @@ function CreateTaskForm({ users, states, onTaskCreated }) {
         const todoState = states.find(st => st.name === "To Do"); // Busca el estado "To Do"
         if (!todoState) return;
         const body = { ...form, enabled: 1, state_id: todoState.id };
-        await fetch('http://127.0.0.1:8000/api/tasks/', {
+        await fetch('http://localhost:8000/api/tasks/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
@@ -70,7 +70,7 @@ function EditTaskForm({ task, users, states, onCancel, onTaskUpdated }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const body = { ...form, enabled: task.enabled };
-        await fetch(`http://127.0.0.1:8000/api/tasks/${task.id}/`, {
+        await fetch(`http://localhost:8000/api/tasks/${task.id}/`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
@@ -111,21 +111,21 @@ function KanbanBoard() {
 
     // Carga las tareas desde la API
     const fetchTasks = async () => {
-        const res = await fetch('http://127.0.0.1:8000/api/tasks/');
+        const res = await fetch('http://localhost:8000/api/tasks/');
         const data = await res.json();
         setTasks(data.filter(task => task.enabled !== 0));
     };
 
     // Carga los usuarios desde la API
     const fetchUsers = async () => {
-        const res = await fetch('http://127.0.0.1:8000/api/users/');
+        const res = await fetch('http://localhost:8000/api/users/');
         const data = await res.json();
         setUsers(data);
     };
 
     // Carga los estados desde la API
     const fetchStates = async () => {
-        const res = await fetch('http://127.0.0.1:8000/api/states/');
+        const res = await fetch('http://localhost:8000/api/states/');
         const data = await res.json();
         setStates(data);
     };
@@ -139,7 +139,7 @@ function KanbanBoard() {
             state_id: newStateId,
             assignee_ids: task.assignees.map(u => u.id)
         };
-        await fetch(`http://127.0.0.1:8000/api/tasks/${task.id}/`, {
+        await fetch(`http://localhost:8000/api/tasks/${task.id}/`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
@@ -156,7 +156,7 @@ function KanbanBoard() {
             state_id: task.state.id,
             assignee_ids: task.assignees.map(u => u.id)
         };
-        await fetch(`http://127.0.0.1:8000/api/tasks/${task.id}/`, {
+        await fetch(`http://localhost:8000/api/tasks/${task.id}/`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
@@ -166,7 +166,7 @@ function KanbanBoard() {
 
     // Elimina la tarea definitivamente (delete en cascada)
     const deleteTask = async (task) => {
-        await fetch(`http://127.0.0.1:8000/api/tasks/${task.id}/`, {
+        await fetch(`http://localhost:8000/api/tasks/${task.id}/`, {
             method: 'DELETE'
         });
         fetchTasks();
@@ -286,7 +286,7 @@ function UserManager() {
     }, []);
 
     const fetchUsers = async () => {
-        const res = await fetch('http://127.0.0.1:8000/api/users/');
+        const res = await fetch('http://localhost:8000/api/users/');
         const data = await res.json();
         setUsers(data);
     };
@@ -299,7 +299,7 @@ function UserManager() {
 
     const addUser = async (e) => {
         e.preventDefault();
-        await fetch('http://127.0.0.1:8000/api/users/', {
+        await fetch('http://localhost:8000/api/users/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newUser)
@@ -309,7 +309,7 @@ function UserManager() {
     };
 
     const updateUser = async (user) => {
-        await fetch(`http://127.0.0.1:8000/api/users/${user.id}/`, {
+        await fetch(`http://localhost:8000/api/users/${user.id}/`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(user)
@@ -319,7 +319,7 @@ function UserManager() {
     };
 
     const deleteUser = async (userId) => {
-        await fetch(`http://127.0.0.1:8000/api/users/${userId}/`, {
+        await fetch(`http://localhost:8000/api/users/${userId}/`, {
             method: 'DELETE'
         });
         fetchUsers();
