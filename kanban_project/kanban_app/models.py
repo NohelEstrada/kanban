@@ -22,7 +22,7 @@ class Task(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
     state = models.ForeignKey(State, on_delete=models.CASCADE)
-
+    enabled = models.IntegerField(default=1)
     # Relación muchos-a-muchos con User a través de una tabla intermedia
     assignees = models.ManyToManyField(
         User,
