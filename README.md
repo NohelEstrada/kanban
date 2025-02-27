@@ -6,6 +6,8 @@ Este documento describe el procedimiento para la instalación y ejecución del p
 
 Antes de ejecutar el script, se deben cumplir los siguientes requisitos:
 
+Tener Sqlite3
+
 Tener Python 3 instalado.
 
 Tener Node.js y npm instalados.
