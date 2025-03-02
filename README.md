@@ -24,7 +24,9 @@ cd ruta/del/proyecto
 
 Ejecutar el script:
 
-./setup.sh
+setup.bat (si es Windows)
+
+./setup.sh (Linux o MacOS)
 
 **Este script ejecutará las siguientes acciones:**
 
@@ -38,4 +40,10 @@ Inicio del servidor de Django.
 
 Instalación de dependencias de React si no están presentes.
 
-Inicio del servidor de React.
+Inicio del servidor de React. (Linux o MacOS)
+
+**En caso de estar en Windows**
+
+Una vez ejecutado el script (.bat), navega a la carpeta src y ejecuta el siguiente comando para iniciar el servidor de React:
+
+npm start
