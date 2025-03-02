@@ -22,6 +22,12 @@ Abrir una terminal y navegar hasta la raíz del proyecto.
 
 cd ruta/del/proyecto
 
+**Para Linux o MacOS:**
+
+Asignar permisos de ejecución al archivo setup.sh:
+
+chmod +x setup.sh
+
 Ejecutar el script:
 
 setup.bat (si es Windows)
